@@ -2,32 +2,64 @@ import React from "react";
 import { withStyles } from "@material-ui/styles";
 
 const styles = {
-  main: {
-    backgroundColor: "purple",
-    border: "3px solid teal"
+  root: {
+    backgroundColor: "white",
+    border: "1px solid black",
+    borderRadious: "5px",
+    padding: "0.5rem",
+    position: "relative",
+    overflow: "hidden",
+    "&:hover": {
+      cursor: "pointer",
+    },
   },
-  secondary: {
-    backgroundColor: "pink",
-    "& h1": {
-      color: "white",
-      "& span": {
-        backgroundColor: "yellow"
-      }
-    }
-  }
+  colors: {
+    backgroundColor: "#dae1e4",
+    height: "150px",
+    width: "100%",
+    borderRadius: "5px",
+    overflow: "hidden",
+  },
+  title: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    margin: "0",
+    color: "black",
+    paddingTop: "0.5rem",
+    fontSize: "1rem",
+    position: "relative",
+  },
+  emoji: {
+    marginLeft: "0.5rem",
+    fontSize: "1.5rem",
+  },
+  miniColor: {
+    height: "25%",
+    width: "20%",
+    display: "inline-block",
+    margin: "0 auto",
+    position: "relative",
+    marginBottom: "-3.5px",
+  },
 };
 
 function MiniPalette(props) {
-  const { classes } = props;
-  console.log(classes);
+  const { classes, paletteName, emoji, colors } = props;
+  const miniColorBoxes = colors.map((col) => (
+    <div
+      className={classes.miniColor}
+      style={{ backgroundColor: col.color }}
+      key={col.name}
+    ></div>
+  ));
   return (
-    <div className={classes.main}>
-      <h1>Mini Palette</h1>
-      <section className={classes.secondary}>
-        <h1>
-          meme <span>asdf</span>
-        </h1>
-      </section>
+    <div className={classes.root}>
+      <div className={classes.colors}>{miniColorBoxes}</div>
+      <h5 className={classes.title}>
+        {paletteName}
+        <span className={classes.emoji}>{emoji}</span>
+      </h5>
     </div>
   );
 }
